@@ -1,0 +1,17 @@
+language: go
+
+
+go:
+  - 1.14
+
+sudo: required
+
+install:
+  - go get -v -u github.com/lizhanfei/trietree
+  - export GOPATH=$HOME/gopath
+
+script:
+  - go test -v -race -coverprofile=coverage.txt -covermode=atomic
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
